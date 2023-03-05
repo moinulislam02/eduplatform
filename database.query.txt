@@ -1,0 +1,147 @@
+CREATE TABLE `User` (
+	`id` INT(255) NOT NULL AUTO_INCREMENT,
+	`status` INT(255) NOT NULL,
+	`firstName` varchar(255) NOT NULL,
+	`lastName` varchar(255) NOT NULL,
+	`phoneNumber` varchar(255) NOT NULL,
+	`emailAddress` varchar(255) NOT NULL,
+	`password` varchar(255) NOT NULL,
+	`gender` varchar(255) NOT NULL,
+	`dob` DATE(255) NOT NULL,
+	`userName` varchar(255) NOT NULL,
+	`shortBio` TEXT NOT NULL,
+	`role` varchar(255) NOT NULL,
+	`photo` varchar(255) NOT NULL,
+	PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `posts` (
+	`ID` varchar(255) NOT NULL AUTO_INCREMENT,
+	`Status` varchar(255) NOT NULL,
+	`U_ID` varchar(255) NOT NULL,
+	`classroomId` INT NOT NULL,
+	`Title` TEXT(255) NOT NULL,
+	`Text` TEXT(255) NOT NULL,
+	`Photo` varchar(255) NOT NULL,
+	`Video` varchar(255) NOT NULL,
+	`Spam_Count` INT(255) NOT NULL,
+	`likeCount` INT NOT NULL,
+	`createdAt` TIMESTAMP NOT NULL,
+	`shareCount` INT NOT NULL,
+	PRIMARY KEY (`ID`)
+);
+
+CREATE TABLE `tags` (
+	`ID` varchar(255) NOT NULL AUTO_INCREMENT,
+	`Status` varchar(255) NOT NULL,
+	`To_ID` varchar(255) NOT NULL,
+	`name` varchar(255) NOT NULL,
+	`Text` varchar(255) NOT NULL,
+	PRIMARY KEY (`ID`)
+);
+
+CREATE TABLE `topics` (
+	`ID` varchar(255) NOT NULL AUTO_INCREMENT,
+	`Status` varchar(255) NOT NULL AUTO_INCREMENT,
+	`Name` varchar(255) NOT NULL AUTO_INCREMENT,
+	`Text` varchar(255) NOT NULL AUTO_INCREMENT,
+	`Count` INT NOT NULL,
+	`Slug` BINARY NOT NULL,
+	`CreatedAt` BINARY NOT NULL,
+	PRIMARY KEY (`ID`)
+);
+
+CREATE TABLE `comments` (
+	`ID` varchar(255) NOT NULL AUTO_INCREMENT,
+	`Status` varchar(255) NOT NULL,
+	`U_ID` varchar(255) NOT NULL,
+	`P_ID` varchar(255) NOT NULL,
+	`Text` TEXT(255) NOT NULL,
+	PRIMARY KEY (`ID`)
+);
+
+CREATE TABLE `classroom` (
+	`ID` INT(255) NOT NULL AUTO_INCREMENT,
+	`Status` varchar(255) NOT NULL,
+	`adminId` INT NOT NULL,
+	`Name` varchar(255) NOT NULL,
+	`photo` TEXT NOT NULL,
+	`classType` varchar(255) NOT NULL,
+	`verificationCode` varchar(255) NOT NULL,
+	`classBio` TEXT NOT NULL,
+	PRIMARY KEY (`ID`)
+);
+
+CREATE TABLE `members` (
+	`id` INT NOT NULL AUTO_INCREMENT,
+	`status` INT NOT NULL,
+	`userId` INT NOT NULL,
+	`classroomId` INT NOT NULL,
+	PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `address` (
+	`id` INT(255) NOT NULL AUTO_INCREMENT,
+	`address` varchar(255) NOT NULL,
+	`city` varchar(255) NOT NULL,
+	`district` varchar(255) NOT NULL,
+	`division` varchar(255) NOT NULL,
+	`country` varchar(255) NOT NULL,
+	`status` INT(255) NOT NULL,
+	`userId` INT(255) NOT NULL,
+	`createdAt` TIMESTAMP NOT NULL,
+	PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `educationInfo` (
+	`id` INT NOT NULL AUTO_INCREMENT,
+	`institute` varchar(255) NOT NULL,
+	`degree` varchar(255) NOT NULL,
+	`department` varchar(255) NOT NULL,
+	`position` varchar(255) NOT NULL,
+	`status` INT NOT NULL,
+	`userId` INT NOT NULL,
+	PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `classroom_topics` (
+	`id` INT NOT NULL AUTO_INCREMENT,
+	`status` INT NOT NULL,
+	`classroomId` INT NOT NULL,
+	`topicId` INT NOT NULL,
+	PRIMARY KEY (`id`)
+);
+
+ALTER TABLE `posts` ADD CONSTRAINT `posts_fk0` FOREIGN KEY (`U_ID`) REFERENCES `User`(`id`);
+
+ALTER TABLE `posts` ADD CONSTRAINT `posts_fk1` FOREIGN KEY (`classroomId`) REFERENCES `classroom`(`ID`);
+
+ALTER TABLE `tags` ADD CONSTRAINT `tags_fk0` FOREIGN KEY (`To_ID`) REFERENCES `topics`(`ID`);
+
+ALTER TABLE `comments` ADD CONSTRAINT `comments_fk0` FOREIGN KEY (`U_ID`) REFERENCES `User`(`id`);
+
+ALTER TABLE `comments` ADD CONSTRAINT `comments_fk1` FOREIGN KEY (`P_ID`) REFERENCES `posts`(`ID`);
+
+ALTER TABLE `classroom` ADD CONSTRAINT `classroom_fk0` FOREIGN KEY (`adminId`) REFERENCES `User`(`id`);
+
+ALTER TABLE `members` ADD CONSTRAINT `members_fk0` FOREIGN KEY (`userId`) REFERENCES `User`(`id`);
+
+ALTER TABLE `members` ADD CONSTRAINT `members_fk1` FOREIGN KEY (`classroomId`) REFERENCES `classroom`(`ID`);
+
+ALTER TABLE `address` ADD CONSTRAINT `address_fk0` FOREIGN KEY (`userId`) REFERENCES `User`(`id`);
+
+ALTER TABLE `educationInfo` ADD CONSTRAINT `educationInfo_fk0` FOREIGN KEY (`userId`) REFERENCES `User`(`id`);
+
+ALTER TABLE `classroom_topics` ADD CONSTRAINT `classroom_topics_fk0` FOREIGN KEY (`classroomId`) REFERENCES `classroom`(`ID`);
+
+ALTER TABLE `classroom_topics` ADD CONSTRAINT `classroom_topics_fk1` FOREIGN KEY (`topicId`) REFERENCES `topics`(`ID`);
+
+
+
+
+
+
+
+
+
+
