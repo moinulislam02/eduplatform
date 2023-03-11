@@ -1,11 +1,8 @@
-const {create,getUsers,getUsersById,updateUser,deleteUser, getUserByEmail} = require('./user.service')
-const CryptoJs = require("crypto-js");
-const jwt = require("jsonwebtoken");
+const {create, getTagById, getTags, updateTag, deleteTag, } = require('./tag.service')
 
 module.exports = {
-    createUser: (req,res)=>{
+    createTag: (req,res)=>{
         const body = req.body;
-        body.password = CryptoJs.AES.encrypt(body.password, process.env.PASS_SEC).toString()
         create(body, (err, result)=>{
             if (err) {
                 console.log(err);
@@ -16,14 +13,14 @@ module.exports = {
             }
             return res.status(200).json({
                 success: true,
-                message: "User created successfully",
+                message: "Tag created successfully",
                 data: result
             })
         })
     },
-    gerUserById: (req, res)=>{
+    getTagById: (req, res)=>{
         const id = req.params.id;
-        getUsersById(id, (err, result)=>{
+        getTagById(id, (err, result)=>{
             if (err) {
                 console.log(err);
                 return res.status(500).json({
@@ -34,18 +31,18 @@ module.exports = {
             if (result.length === 0) {
                 return res.status(200).json({
                     success: false,
-                    message: "User not found"
+                    message: "Tag not found"
                 })
             }
             return res.status(200).json({
                 success: true,
-                message: "User found",
+                message: "Tag found",
                 data: result
             })
         })
     },
-    getUsers: (req, res)=>{
-        getUsers((err, result)=>{
+    getTags: (req, res)=>{
+        getTags((err, result)=>{
             if (err) {
                 console.log(err);
                 return res.status(500).json({
@@ -55,14 +52,14 @@ module.exports = {
             }
             return res.status(200).json({
                 success: true,
-                message: "Users found",
+                message: "Tags found",
                 data: result
             })
         })
     },
-    updateUser: (req, res)=>{
+    updateTag: (req, res)=>{
         const body = req.body;
-        updateUser(body, (err, result)=>{
+        updateTag(body, (err, result)=>{
             if (err) {
                 console.log(err);
                 return res.status(500).json({
@@ -72,14 +69,14 @@ module.exports = {
             }
             return res.status(200).json({
                 success: true,
-                message: "User updated successfully",
+                message: "Tag updated successfully",
                 data: result
             })
         })
     },
-    deleteUser: (req, res)=>{
+    deleteTag: (req, res)=>{
         const data = req.params.id;
-        deleteUser(data, (err, result)=>{
+        deleteTag(data, (err, result)=>{
             if (err) {
                 console.log(err);
                 return res.status(500).json({
@@ -89,40 +86,8 @@ module.exports = {
             }
             return res.status(200).json({
                 success: true,
-                message: "User delete successfully"
+                message: "Tag delete successfully"
             })
-        })
-    },
-    login : (req, res)=>{
-        const body = req.body;
-        getUserByEmail(body.emailAddress, (err, result)=>{
-            if (err) {
-                console.log(err);
-            }
-            if (!result) {
-                return res.status(204).json({
-                    success: false,
-                    message: "Invalid email or password"
-                })
-            }
-            const hashedPassword = CryptoJs.AES.decrypt(result.password, process.env.PASS_SEC);
-            const originalPassword = hashedPassword.toString(CryptoJs.enc.Utf8);
-            originalPassword !== body.password && res.status(401).json("Wrong credintial");
-
-            const accessToken = jwt.sign({
-                id:result.id,
-                role:result.role,
-            },
-            process.env.JWT_SEC,
-            {expiresIn: "1d"}
-            );
-
-            const {password, ...others} = result;
-            res.status(200).json({
-                success: true,
-                message: "Logged in successfully",
-                data:{...others, accessToken}
-            });
         })
     }
 }
