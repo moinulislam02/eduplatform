@@ -7,6 +7,7 @@ const topicRouter = require('./modules/topics/topic.router')
 const addressRouter = require('./modules/address/address.router')
 const eduInfoRouter = require('./modules/educationinfo/eduinfo.router')
 const tagRouter = require('./modules/tags/tag.router')
+const commentRouter = require('./modules/comments/comment.router')
 const cors = require('cors')
 
 app.use(cors())
@@ -19,6 +20,7 @@ app.use('/api/topics', topicRouter);
 app.use('/api/address', addressRouter);
 app.use('/api/eduinfo', eduInfoRouter);
 app.use('/api/tags', tagRouter);
+app.use('/api/comments', commentRouter);
 
 app.listen(process.env.PORT, ()=>{
     console.log("server listening on port 5000");
