@@ -5,20 +5,33 @@ const jwt = require("jsonwebtoken");
 module.exports = {
     createUser: (req,res)=>{
         const body = req.body;
-        body.password = CryptoJs.AES.encrypt(body.password, process.env.PASS_SEC).toString()
-        create(body, (err, result)=>{
+        getUserByEmail(body.emailAddress,(err, result)=>{
             if (err) {
                 console.log(err);
-                return res.status(500).json({
+            }
+            if (!result) {
+                body.password = CryptoJs.AES.encrypt(body.password, process.env.PASS_SEC).toString()
+                create(body, (err, result)=>{
+                    if (err) {
+                        console.log(err);
+                        return res.status(500).json({
+                            success: false,
+                            message: "Database connection error: " + err.message
+                        })
+                    }else{
+                        return res.status(200).json({
+                            success: true,
+                            message: "User created successfully",
+                            data: result
+                        })
+                    }
+                })
+            }else{
+                return res.status(404).json({
                     success: false,
-                    message: "Database connection error: " + err.message
+                    message: "User Already Exist"
                 })
             }
-            return res.status(200).json({
-                success: true,
-                message: "User created successfully",
-                data: result
-            })
         })
     },
     gerUserById: (req, res)=>{

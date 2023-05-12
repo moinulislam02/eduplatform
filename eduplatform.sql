@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 05, 2023 at 08:03 PM
+-- Generation Time: May 12, 2023 at 08:54 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -47,7 +47,8 @@ INSERT INTO `address` (`id`, `address`, `city`, `district`, `division`, `country
 (1, 'Road 6/A, Sector 5 dolipara', '', 'Dhaka', 'dhaka', 'Bangladesh', '0', 1, '2023-03-03 06:40:30'),
 (2, 'Road 15, Adabor', '', 'Dhaka', 'Dhaka', 'Bangladesh', '0', 2, '2023-03-03 06:41:52'),
 (3, 'Akran, Ashulia', '', 'Savar', 'Dhaka', 'Bangladesh', '0', 3, '2023-03-03 06:42:11'),
-(4, 'Mirpur', '', 'Mirpur', 'Dhaka', 'Bangladesh', '0', 6, '2023-03-03 06:57:45');
+(4, 'Mirpur', '', 'Mirpur', 'Dhaka', 'Bangladesh', '0', 6, '2023-03-03 06:57:45'),
+(7, NULL, NULL, NULL, 'dhaka', 'Bangladesh', '0', 28, '2023-05-07 09:38:02');
 
 -- --------------------------------------------------------
 
@@ -114,7 +115,8 @@ INSERT INTO `eduinfo` (`id`, `degree`, `department`, `institute`, `status`, `cre
 (1, 'BSc', 'CSe', 'Eastern University', 1, '2023-03-03 16:40:34', 1),
 (2, 'BSc', 'CSe', 'Eastern University', 0, '2023-03-03 16:34:05', 2),
 (3, 'BSc', 'CSe', 'Eastern University', 0, '2023-03-03 16:34:09', 3),
-(5, 'BSc', 'CSe', 'Eastern University', 0, '2023-03-03 16:41:12', 6);
+(5, 'BSc', 'CSe', 'Eastern University', 0, '2023-03-03 16:41:12', 6),
+(7, 'HSC', 'CSE', 'Eastern University', 0, '2023-05-07 09:38:21', 28);
 
 -- --------------------------------------------------------
 
@@ -230,7 +232,7 @@ INSERT INTO `user` (`id`, `status`, `firstName`, `LastName`, `phoneNumber`, `ema
 (2, 0, 'Tausif', 'Alam', NULL, 'tausif.study@gmail.com', 'U2FsdGVkX1/F/yVqsls8Volz2NVguGyrLw/zoOiepnM=', 'male', NULL, 'tausif02', NULL, 'student', NULL, NULL, '2023-03-02 18:06:17'),
 (3, 0, 'Sumaiya', 'Fahmida', NULL, 'sumaiyaFahmida@gmail.com', 'U2FsdGVkX1/xoSQnvtzKbHnqnHLF2uqFMon+HbSNXHU=', 'female', NULL, 'sumaiya02', NULL, 'student', NULL, NULL, '2023-03-02 19:23:41'),
 (6, 0, 'Sadia', 'Neer', NULL, 'sadianeer@gmail.com', 'U2FsdGVkX19tebqfKITk5gDj+gXB1SsZVvI3zDQZziU=', 'female', NULL, 'sadia02', NULL, 'student', NULL, NULL, '2023-03-03 06:42:46'),
-(7, NULL, NULL, NULL, NULL, NULL, 'U2FsdGVkX1+/9wf4oauYRUKiF7LCg2TaExpkcVuZdrA=', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2023-03-12 04:35:05');
+(28, 0, 'Moinul', 'Islam', NULL, 'web.moinul@gmail.com', 'U2FsdGVkX1/ThadFFvGxiV0a754ueXLwKEZFvjE40JM=', 'male', NULL, NULL, NULL, NULL, NULL, NULL, '2023-05-07 09:37:14');
 
 --
 -- Indexes for dumped tables
@@ -299,7 +301,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `address`
 --
 ALTER TABLE `address`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `classroom`
@@ -317,7 +319,7 @@ ALTER TABLE `comments`
 -- AUTO_INCREMENT for table `eduinfo`
 --
 ALTER TABLE `eduinfo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `posts`
@@ -341,7 +343,7 @@ ALTER TABLE `topic`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- Constraints for dumped tables
