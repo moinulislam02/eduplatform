@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Container, FormControl, FormGroup } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { login } from '../util/apis'
 import { useDispatch } from 'react-redux'
@@ -14,22 +14,23 @@ export function SignUp() {
   const [eduinfo, seteduinfo] = useState(false)
   const [userFormError, setuserFormError] = useState("")
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const handleChange =(e)=>{
     setuserInfoData(prev=>{
         return{...prev, [e.target.name]:e.target.value}
     })
   }
-  const handleAddressChange =(e)=>{
-    setaddressInfo(prev=>{
-        return{...prev, [e.target.name]:e.target.value}
-    })
-  }
-  const handleEduChange =(e)=>{
-    seteduInfoData(prev=>{
-        return{...prev, [e.target.name]:e.target.value}
-    })
-  }
+//   const handleAddressChange =(e)=>{
+//     setaddressInfo(prev=>{
+//         return{...prev, [e.target.name]:e.target.value}
+//     })
+//   }
+//   const handleEduChange =(e)=>{
+//     seteduInfoData(prev=>{
+//         return{...prev, [e.target.name]:e.target.value}
+//     })
+//   }
 
 
   const handleUserSubmit = async (e) =>{
@@ -38,40 +39,45 @@ export function SignUp() {
     const res = await axios({method:'post',url:`${process.env.REACT_APP_API_URL}/users/`, data:data}).then((res)=>{
         if (res.data?.success === true) {
             login(dispatch, {"emailAddress":data.emailAddress, "password":data.password}).then((ret)=>{
-                setuserInfoData(ret.data.data)
-                setuserinfo(false)
-                setaddress(true)
+                if (res.status === 200) {
+                    setuserInfoData(ret.data.data)
+                    setuserinfo(false)
+                    setaddress(true)
+                    navigate('/')
+                }else{
+
+                }
             })
         }
     })
   }
 
-  const handleAddress = (e) =>{
-    e.preventDefault()
-    let data = {...addressInfo, status:0 , userId:userInfoData.id}
-    const res = axios({method:'post',url:`${process.env.REACT_APP_API_URL}/address/`, data:data, headers:{token: 'Bearer '+ userInfoData?.accessToken}}).then((res)=>{
-        if (res.data?.success === true) {
-            setuserinfo(false)
-            setaddress(false)
-            seteduinfo(true)
-        }else{
-            setuserFormError("Fill your form correctly!")
-        }
-    })
-  }
-  const handleEduInfo = (e) =>{
-    e.preventDefault()
-    let data = {...eduInfoData, status:0 , userId:userInfoData.id}
-    const res = axios({method:'post',url:`${process.env.REACT_APP_API_URL}/eduinfo/`, data:data, headers:{token: 'Bearer '+ userInfoData?.accessToken}}).then((res)=>{
-        if (res.data?.success === true) {
-            setuserinfo(false)
-            setaddress(false)
-            seteduinfo(false)
-        }else{
-            setuserFormError("Fill your form correctly!")
-        }
-    })
-  }
+//   const handleAddress = (e) =>{
+//     e.preventDefault()
+//     let data = {...addressInfo, status:0 , userId:userInfoData.id}
+//     const res = axios({method:'post',url:`${process.env.REACT_APP_API_URL}/address/`, data:data, headers:{token: 'Bearer '+ userInfoData?.accessToken}}).then((res)=>{
+//         if (res.data?.success === true) {
+//             setuserinfo(false)
+//             setaddress(false)
+//             seteduinfo(true)
+//         }else{
+//             setuserFormError("Fill your form correctly!")
+//         }
+//     })
+//   }
+//   const handleEduInfo = (e) =>{
+//     e.preventDefault()
+//     let data = {...eduInfoData, status:0 , userId:userInfoData.id}
+//     const res = axios({method:'post',url:`${process.env.REACT_APP_API_URL}/eduinfo/`, data:data, headers:{token: 'Bearer '+ userInfoData?.accessToken}}).then((res)=>{
+//         if (res.data?.success === true) {
+//             setuserinfo(false)
+//             setaddress(false)
+//             seteduinfo(false)
+//         }else{
+//             setuserFormError("Fill your form correctly!")
+//         }
+//     })
+//   }
 
   return (
     <div className='signup'>
@@ -79,7 +85,41 @@ export function SignUp() {
             <Container>
                 <h3>Create an account</h3>
                 <p>Welcome to Eduplatform.Please put your login credintial below to start using the app.</p>
-                {userinfo? (
+                <form onSubmit={handleUserSubmit}>
+                    <FormGroup className='form-group'>
+                        <label htmlFor='fname'>First Name</label>
+                        <FormControl type='text' id='fname' onChange={handleChange} name='firstName' placeholder='Jhon' required/>
+                    </FormGroup>
+                    <FormGroup className='form-group'>
+                        <label htmlFor='lname'>Last Name</label>
+                        <FormControl type='text' id='lname' onChange={handleChange} name='LastName' placeholder='Doe'/>
+                    </FormGroup>
+                    <FormGroup className='form-group'>
+                        <label htmlFor='gender'>Gender</label>
+                        <select className='form-control' name='gender' onChange={handleChange} required>
+                            <option>Select Gender</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select>
+                    </FormGroup>
+                    <FormGroup className='form-group'>
+                        <label htmlFor='email'>E-mail</label>
+                        <FormControl type='text' onChange={handleChange} id='email' name='emailAddress' placeholder='jhondoe@gmail.com' required/>
+                    </FormGroup>
+                    <FormGroup className='form-group'>
+                        <label htmlFor='password'>Password</label>
+                        <FormControl type='password' onChange={handleChange} name='password' id='password' placeholder='' required/>
+                    </FormGroup>
+                    <span>{userFormError}</span>
+                    <hr></hr>
+                    <div className='action'>
+                        <div className='d-flex align-items-center justify-content-end w-100'>
+                            <button type='submit' className='theme-btn btn'>Sign Up</button>
+                        </div>
+                    </div>
+                    <p>Already have and account? <Link to='/login'>Sign In</Link></p>
+                </form>
+                {/* {userinfo? (
                     <form onSubmit={handleUserSubmit}>
                         <FormGroup className='form-group'>
                             <label htmlFor='fname'>First Name</label>
@@ -134,7 +174,6 @@ export function SignUp() {
                                 <option value="khulna">Khulna</option>
                             </select>
                         </FormGroup>
-                        {/* <span>{userFormError}</span> */}
                         <hr></hr>
                         <div className='action'>
                             <div className='d-flex align-items-center justify-content-end w-100'>
@@ -165,7 +204,7 @@ export function SignUp() {
                             <button type='submit' className='theme-btn btn'>Done</button>
                         </div>
                     </form>
-                ) : "Done"}
+                ) : "Done"} */}
             </Container>
         </div>
         <div className='banner-img'>

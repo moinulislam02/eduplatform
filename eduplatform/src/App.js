@@ -4,16 +4,37 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Signin from './pages/signin';
 import Signup from './pages/signup';
 import { Navbar } from './components/Navbar';
+import { useSelector } from 'react-redux';
+import Feeds from './pages/feeds';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+import { useState } from 'react';
 
 function App() {
+  const currentUser = useSelector((state)=>state.userInfo.currentUser)
+
   return (
     <div className="App">
       <BrowserRouter>
-        <Navbar/>
-        <Routes>
-          <Route path='/login' element={<Signin/>} />
-          <Route path='/register' element={<Signup/>} />
-        </Routes>
+        {currentUser === null? (
+          <>
+            <Routes>
+              <Route path='/' element={<Signin/>} />
+              <Route path='/register' element={<Signup/>} />
+            </Routes>
+          </>
+        ):(
+          <>
+            <Navbar/>
+            <div className="content-area">
+              <div className="container">
+                <Routes>
+                  <Route path='/' element={<Feeds/>} />
+                </Routes>
+              </div>
+            </div>
+          </>
+        )}
       </BrowserRouter>
     </div>
   );

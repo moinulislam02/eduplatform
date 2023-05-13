@@ -10,14 +10,14 @@
   }
   
   a{
-    text-decoration: none;
-    display: block;
+    text-decoration: none!important;
+    display: block!important;
   }
   
   ul{
-    list-style: none;
-    padding: 0;
-    margin: 0;
+    list-style: none!important;
+    padding: 0!important;
+    margin: 0!important;
   }
   
   .h-100{
@@ -37,17 +37,17 @@
   }
   .theme-btn.theme-btn-alt{
     
-  background: #ffffff;
+  background: #ffffff!important;
     
-  color: #3791b5;
+  color: #3791b5!important;
     
-  font-weight: 700;
+  font-weight: 700!important;
   }
   
   .theme-btn:hover{
-    background: #3791b5;
-    color:#ffffff;
-    box-shadow: 0px 0px 5px #00000038;
+    background: #3791b5!important;
+    color:#ffffff!important;
+    box-shadow: 0px 0px 5px #00000038!important;
   }
   
   .responsive-menu {
@@ -78,7 +78,7 @@
   
   .box {
     padding: 15px;
-    box-shadow: 0px 0px 2px #0000002b;
+    box-shadow: 0px 0px 2px #0000002b!important;
     border-radius: 3px;
     margin-top: 30px;
     background: #ffffff;
@@ -169,8 +169,8 @@
     font-weight: 600;
   }
   
-  .widgets .topics li a i {
-    width: 30px;
+  .widgets .topics li a svg {
+    width: 50px;
   }
   
   .widgets .tags {
@@ -319,6 +319,13 @@
       font-weight: 600;
       margin: 0 7px;
       line-height: 10px;
+  }
+  .yourtopics li a:hover {
+    transform: scale(1.1);
+  }
+
+  .yourtopics li a svg{
+    margin-right: 10px;
   }
    
   .header-widget {width: 100%;}
@@ -553,7 +560,9 @@
   
   .post-modal {}
   
-  .post-modal .modal {}
+  .post-modal .modal {
+    background: #00000099;
+  }
   
   .post-modal .modal .modal-dialog {max-width: 600px;}
   
@@ -602,9 +611,16 @@
     cursor: pointer;
   }
   
-  .post-files .form-group i {
+  .post-files .form-group svg {
     position: absolute;
     font-size: 22px;
+    color: #3791b5;
+  }
+
+  .ck-rounded-corners .ck.ck-editor__main>.ck-editor__editable, .ck.ck-editor__main>.ck-editor__editable.ck-rounded-corners{
+    border: 0!important;
+    box-shadow: none!important;
+    outline: 0!important;
   }
   
   .post-files .form-group input {
