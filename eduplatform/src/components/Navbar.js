@@ -2,27 +2,31 @@ import React, { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHouse, faBroadcastTower, faEdit, faSearch, faUser } from '@fortawesome/free-solid-svg-icons'
 import PostModal from './PostModal'
+import { Link } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 
 export function Navbar() {
   const [ismodalopen, setismodalopen] = useState(false)
   const detectClose = (data) =>{
     setismodalopen(data)
   }
+  const location = useLocation()
+
   return (
     <header>
         <div className="container">
             <div className="row">
                 <div className="col-lg-3 col-sm-3 col-3 d-flex align-items-center">
-                    <a href="#" className="logo">
+                    <Link to='/' className="logo">
                         <img src="/img/logo.png" alt="Edu-Platform"/>
-                    </a>
+                    </Link>
                 </div>
                 <div className="col-lg-6 responsive-menu">
                     <ul className="menu">
                         <li>
-                            <a href="#" className="active">
+                            <Link to='/' className={location.pathname === '/'? "active" : ""}>
                                 <FontAwesomeIcon icon={faHouse} />
-                            </a>
+                            </Link>
                         </li>
                         <li>
                             <a href="#">
@@ -40,9 +44,9 @@ export function Navbar() {
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <Link to='/profile' className={location.pathname === '/profile'? "active" : ""}>
                                 <FontAwesomeIcon icon={faUser} />
-                            </a>
+                            </Link>
                         </li>
                     </ul>
                 </div>

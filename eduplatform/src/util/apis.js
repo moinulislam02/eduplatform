@@ -51,3 +51,25 @@ export const uploadMedia = async (data) =>{
         return res
     }
 }
+
+export const getMyPosts = async (id, vartoken) =>{
+    let res;
+    try {
+        res = await axios({method:'get',url:`${process.env.REACT_APP_API_URL}/posts/user/${id}`, headers:{token: 'Bearer '+ vartoken}})
+        return res
+    } catch (error) {
+        console.log(error);
+        return res
+    }
+}
+
+export const updateUser = async (id, vartoken, data) =>{
+    let res;
+    try {
+        res = await axios({method:'patch',url:`${process.env.REACT_APP_API_URL}/users/${id}`,data:data , headers:{token: 'Bearer '+ vartoken}})
+        return res
+    } catch (error) {
+        console.log(error);
+        return res
+    }
+}

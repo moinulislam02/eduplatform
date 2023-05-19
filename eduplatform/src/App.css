@@ -439,6 +439,12 @@
       max-height: 60px;
       margin-right: 15px;
   }
+
+  .post-content figure {}
+
+.post-content figure img {
+    width: 100%;
+}
   
   .post-header .post-user-image img {}
   
@@ -504,7 +510,7 @@
   
   .post-content .post-images .single-post-img:first-child {
       width: 100%;
-      height: 400px;
+      height: auto;
   }
   
   .post-content .post-images .single-post-img img {
@@ -668,6 +674,79 @@
   .profile-box-info .form-control {
       margin-top: 14px;
   }
+
+  .post-content figure {}
+
+.post-content figure img {
+    width: 100%;
+}
+
+.profile-top {
+    height: 300px;
+    position: relative;
+}
+
+.profile-info img {
+  width: 200px;
+  border-radius: 50%;
+}
+
+.profile-info {
+  margin-top: -30px;
+  position: relative;
+  margin-left: 34px;
+}
+
+.profile-inner-info {
+  margin-left: 30px;
+}
+
+.profile-inner-info h3 {
+  font-weight: 700;
+  color: #363636;
+}
+
+.profile-inner-info p {
+  margin-bottom: 0;
+}
+
+.profile-inner-info p:nth-child(1) {}
+
+.edit-profile-outer {
+  position: fixed;
+  z-index: 99999999;
+  background: #0000009c;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.edir-profile {
+  width: 500px;
+  padding: 40px;
+  border-radius: 10px;
+  background: #ffffff;
+}
+
+.edir-profile svg {
+  width: 20px;
+  height: 20px;
+}
+
+.edit-img {
+  width: 184px;
+  margin: auto;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.edit-img img {
+  width: 100%;
+}
   
   
   

@@ -49,9 +49,9 @@ export function Feed() {
                         <div className="post-content">
                             <p dangerouslySetInnerHTML={{__html:post.description}}></p>
                             <div className="post-images">
-                                <div className="single-post-img">
+                                {post.photo === null? "" : <div className="single-post-img">
                                     <img src={`${process.env.REACT_APP_API_URL}/alluploads/${post.photo}`} className="w-100" alt=""/>
-                                </div>
+                                </div>}
                                 {/* <div className="single-post-img">
                                     <img src="./img/postimg4.jpeg" alt=""/>
                                 </div>

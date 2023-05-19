@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 12, 2023 at 08:54 PM
+-- Generation Time: May 19, 2023 at 06:23 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -39,17 +39,6 @@ CREATE TABLE `address` (
   `createdAt` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `address`
---
-
-INSERT INTO `address` (`id`, `address`, `city`, `district`, `division`, `country`, `status`, `userId`, `createdAt`) VALUES
-(1, 'Road 6/A, Sector 5 dolipara', '', 'Dhaka', 'dhaka', 'Bangladesh', '0', 1, '2023-03-03 06:40:30'),
-(2, 'Road 15, Adabor', '', 'Dhaka', 'Dhaka', 'Bangladesh', '0', 2, '2023-03-03 06:41:52'),
-(3, 'Akran, Ashulia', '', 'Savar', 'Dhaka', 'Bangladesh', '0', 3, '2023-03-03 06:42:11'),
-(4, 'Mirpur', '', 'Mirpur', 'Dhaka', 'Bangladesh', '0', 6, '2023-03-03 06:57:45'),
-(7, NULL, NULL, NULL, 'dhaka', 'Bangladesh', '0', 28, '2023-05-07 09:38:02');
-
 -- --------------------------------------------------------
 
 --
@@ -83,14 +72,6 @@ CREATE TABLE `comments` (
   `createdAt` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `comments`
---
-
-INSERT INTO `comments` (`id`, `content`, `status`, `userId`, `postId`, `createdAt`) VALUES
-(2, 'Hey, I am new to this plaform', '0', 1, 1, '2023-03-18 06:29:11'),
-(3, 'Hey, I am also new to this plaform', '0', 2, 1, '2023-03-18 06:29:47');
-
 -- --------------------------------------------------------
 
 --
@@ -106,17 +87,6 @@ CREATE TABLE `eduinfo` (
   `createdAt` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `userId` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `eduinfo`
---
-
-INSERT INTO `eduinfo` (`id`, `degree`, `department`, `institute`, `status`, `createdAt`, `userId`) VALUES
-(1, 'BSc', 'CSe', 'Eastern University', 1, '2023-03-03 16:40:34', 1),
-(2, 'BSc', 'CSe', 'Eastern University', 0, '2023-03-03 16:34:05', 2),
-(3, 'BSc', 'CSe', 'Eastern University', 0, '2023-03-03 16:34:09', 3),
-(5, 'BSc', 'CSe', 'Eastern University', 0, '2023-03-03 16:41:12', 6),
-(7, 'HSC', 'CSE', 'Eastern University', 0, '2023-05-07 09:38:21', 28);
 
 -- --------------------------------------------------------
 
@@ -145,7 +115,12 @@ CREATE TABLE `posts` (
 --
 
 INSERT INTO `posts` (`id`, `Title`, `description`, `photo`, `video`, `spam_Count`, `likeCount`, `commentCount`, `shareCount`, `status`, `userId`, `classroomIdentity`, `createdAt`) VALUES
-(1, 'Welcome to the Eduplatform', 'lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem ', NULL, NULL, NULL, 1, NULL, NULL, '0', 1, NULL, '2023-03-18 06:28:21');
+(3, NULL, '<p><strong>Next.js+Prisma</strong> জাভাস্ক্রিপ্ট ফুলস্ট্যাক ডেভেলপমেন্টে বিশ্লেষণ ?<br>✴️ প্রথমেই বলি <strong>Next.js</strong> এর সাথে Prisma কে যুক্র করার কারন- এর অফিসিয়াল ডকুমেন্টেশন। ডাটাবেজ অপারেশনের ক্ষেত্রে ডকুমেন্টেশনে সাজেস্টেড।<br>✴️ <strong>Next.js</strong> একটি ফ্রেমওয়ার্ক এর মধ্যে <strong>Front-End,Back-End</strong> সফটওয়্যার ডেভেলপমেন্ট এর কমপ্লিট সাইকেল সাজানো আছে। আলাদা ডেভেলপমেন্ট প্যারা দূর হয়ে যাবে।<br>✴️ শুধু মাত্র React Front End থেকে Confidential API যেমন SMS, Payment, B2B, Confidential Micro Service গুলো Call করা সম্ভব নয়, ভুলেও কেউ Call করে থাকলে, সেটা সিকিউর নয়। যে API গুলো Next.js এর Server-Side সুবিধা থেকে সরাসরি সিকিউর Call করা যাবে।<br>✴️ CSRF, XSRF, Cookies ইত্যাদি Application সিকিউরিটি নিয়ে কাজ করা একেবারে সহজ হয়ে যাবে। যে ফিচার গুলো Laravel, ASP-Net এর মধ্যে সহজে পাওয়া যায়।<br>✴️ Next.js এর মধ্যে একই সাথে CSR,SSR এর কম্বিনেশন - ডেভেলপমেন্ট+পারফর্মেন্স এ নতুন একটা যুগের সুচনা।<br>???? Prisma এর বিষয়ে যদি বলি, শুরুতে বলবো Single Code Base স্কিমা, কুয়েরি যে ডাটাবেজের সাথে খুশি যুক্ত করা যাবে। হোক সেটা MySQL,SQLite, PostgreSQL, MSSQL - মানে আপনার এপ্লিকেশন যে কোনও ডাটাবেজ সিস্টেমের সাথে উপযোগী হয়ে গেলে। যে ফিচারটি Laravel এর ব্যাপক ব্যাবহারের অন্যতম একটি কারন।<br>???? Prisma Migration ফিচারে পুরো এপ্লিকেশনের জন্য যেভাবে দরকার- রিলেশন,জয়েন,কনসিস্টেন্সি সব কিছু ডাটাবেজে ম্যানেজ করা যায়। যেটা সহজ কথায় Laravel Migration ফিচারের সমান পাওয়ার ফুল।<br>???? Prisma Client ফিচারে - সিম্পল থেকে কমপ্লেক্স, ট্রানজেকশন-রোল ব্যাক সব ধরনের ডাটাবেজ অপারেশন সম্ভব। যেটা Laravel ORM-Query Builder ফিচারের সমান।<br>???? Live Deploy এর ক্ষেত্রে যদি আসি, এই কম্বিনেশনটি Shared hosting থেকে শুরু করে VPS সব খানে Deploy এবং Install সম্ভব।<br>???? এবার লাইব্রেরী ও প্যাকেজের বিষয়ে আসিঃ NPM এবং Yarn এর যত Front-End,Back-End প্যাকেজ আছে , হোক সেটা Express JS , React.js, কিংবা Tensorflow কিংবা অন্য কিছু। সব ধরনের প্যাকেজ/লাইব্রেরী Next.js এর সাথে ব্যাবহার করা যাবে।</p>', '345851629_199755656215590_1592150222302441000_n.jpg', NULL, NULL, 0, 0, 0, '0', 29, NULL, '2023-05-13 02:35:34'),
+(4, NULL, '<p><strong>Next.js</strong> মোটেও নতুন কোনও ফ্রেমওয়ার্ক নয়। React আসে 2013 সালে , তার মাত্র ৩ বছর পর ২০১৬ সালে আসে Next.js. দীর্ঘ ৭ বছরের যাত্রায় এটি কমপ্লিটলি স্ট্যাবাল এবং হাই প্রোডাকশন গ্রেড একটি ফ্রেমওয়ার্ক। Next.js আরও আগেই আলোচনায় আসা উচিত ছিলো। কিন্তু আলোচনা শুরু হলো React যখন অফিসিয়ালি Next.js কে সাজেষ্ট করলো।</p><p>✴️ Next.js একটি ফ্রেমওয়ার্ক এর মধ্যে Front-End,Back-End সফটওয়্যার ডেভেলপমেন্ট এর কমপ্লিট সাইকেল সাজানো আছে। আলাদা ডেভেলপমেন্ট প্যারা দূর হয়ে যাবে।</p><p>✴️ শুধু মাত্র React Front End থেকে Confidential API যেমন SMS, Payment, B2B, Confidential Micro Service গুলো Call করা সম্ভব নয়, ভুলেও কেউ Call করে থাকলে, সেটা সিকিউর নয়। যে API গুলো Next.js এর Server-Side সুবিধা থেকে সরাসরি সিকিউর Call করা যাবে।</p><p>✴️ CSRF, XSRF, Cookies ইত্যাদি Application সিকিউরিটি নিয়ে কাজ করা একেবারে সহজ হয়ে যাবে। যে ফিচার গুলো Laravel, ASP-Net এর মধ্যে সহজে পাওয়া যায়।</p><p>✴️ Next.js এর মধ্যে একই সাথে CSR,SSR এর কম্বিনেশন - ডেভেলপমেন্ট+পারফর্মেন্স এ নতুন একটা যুগের সুচনা।</p><p>✴️ Live Deploy এর ক্ষেত্রে যদি আসি, এই কম্বিনেশনটি Shared hosting থেকে শুরু করে VPS সব খানে Deploy এবং Install সম্ভব।</p><p>✴️ এবার লাইব্রেরী ও প্যাকেজের বিষয়ে আসিঃ NPM এবং Yarn এর যত Front-End,Back-End প্যাকেজ আছে , হোক সেটা Express JS , React.js, কিংবা Tensorflow কিংবা অন্য কিছু। সব ধরনের প্যাকেজ/লাইব্রেরী Next.js এর সাথে ব্যাবহার করা যাবে।</p>', '345622609_907255847231162_2659861585471430533_n.jpg', NULL, NULL, 0, 0, 0, '0', 29, NULL, '2023-05-13 02:37:51'),
+(5, NULL, '<p>নতুন আপডেটে আপনি React এর যে বিষয় গুলো Study করে Next.JS এ যাবেন<br># এই নোটটি অফিসিয়াল ডকুমেন্টেশন এ অনুসারে লেখা হয়েছে।</p>', '345840989_774027307689899_8001984499155156135_n.jpg', NULL, NULL, 0, 0, 0, '1', 29, NULL, '2023-05-13 02:41:34'),
+(6, NULL, '<figure class=\"image\"><img src=\"https://scontent.fdac27-2.fna.fbcdn.net/v/t39.30808-6/345632791_3499258840363115_8430086555003450089_n.png?stp=dst-jpg&amp;_nc_cat=103&amp;ccb=1-7&amp;_nc_sid=825194&amp;_nc_ohc=jGwzt0DCBuEAX9LqcX9&amp;_nc_ht=scontent.fdac27-2.fna&amp;oh=00_AfBMtUzAA64xFCj8rCerUjiBH-N6qe1JNSX3DG1h0rrPaw&amp;oe=64640C5B\" alt=\"May be a graphic of text that says &quot;React srelatively un-opin ionated about how you build and structure your applications. There are multiple ways to build applications with React. NEXT.JS .JS The React ramework for the Web Next.js provides application. framework to structure your And optim izations that elp make both the development process and final application faster. Next.js included compl ete journey to develop full stack web application.&quot;\"></figure><p>Next.js Community Bangladesh&nbsp;<br>Next.js is an open-source web development framework created by the private company Vercel providing React-based web applications with server-side rendering and static website generation<br>&nbsp;</p>', NULL, NULL, NULL, 0, 0, 0, '0', 30, NULL, '2023-05-13 02:55:42'),
+(7, NULL, '<p>???? ???????????????? ???????????????????????????????????????? ???????????????????????? ???????????????????????????? ???????????????????????????????????????? ???????????????? ????<br>⬇ JavaScript is a popular programming language used for both front-end and back-end development. Here are some important methods in the JavaScript String object that you may find useful:</p><p>???? ???????????????????????? Ch Bappy for more web development, Programming tips, tricks, and job opportunities.</p><p>???? ???????????? ????????????????????????: @Manish Kumar Shah<br>???? Get started with web development at W3Schools.com????</p><figure class=\"image\"><img src=\"https://media.licdn.com/dms/image/D5622AQF0F_llP72Sjg/feedshare-shrink_1280/0/1683918162991?e=1686787200&amp;v=beta&amp;t=UYaIymXezrVQGIq1KlSPZJxvoqtnm0DjMkxbSwo5Kt0\" alt=\"text\"></figure><figure class=\"image\"><img src=\"https://media.licdn.com/dms/image/D5622AQF0F_llP72Sjg/feedshare-shrink_1280/0/1683918162991?e=1686787200&amp;v=beta&amp;t=UYaIymXezrVQGIq1KlSPZJxvoqtnm0DjMkxbSwo5Kt0\" alt=\"text\"></figure><figure class=\"image\"><img src=\"https://media.licdn.com/dms/image/D5622AQF0F_llP72Sjg/feedshare-shrink_1280/0/1683918162991?e=1686787200&amp;v=beta&amp;t=UYaIymXezrVQGIq1KlSPZJxvoqtnm0DjMkxbSwo5Kt0\" alt=\"text\"></figure>', '1683918162991.jpg', NULL, NULL, 0, 0, 0, '0', 31, NULL, '2023-05-13 04:22:06'),
+(8, NULL, '<p><strong>Share your knowledge now...</strong></p>', '345851629_199755656215590_1592150222302441000_n.jpg', NULL, NULL, 0, 0, 0, '0', 35, NULL, '2023-05-13 05:40:38');
 
 -- --------------------------------------------------------
 
@@ -228,11 +203,13 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `status`, `firstName`, `LastName`, `phoneNumber`, `emailAddress`, `password`, `gender`, `dob`, `username`, `shortBio`, `role`, `photo`, `lastLogin`, `createdAt`) VALUES
-(1, 0, 'Moinul', 'Islam', NULL, 'moinul.islam5749@gmail.com', 'U2FsdGVkX1+cwLwAT6Aa443UfB0VyJbjlRVl9M65CAc=', 'male', NULL, 'moinul02', NULL, 'admin', NULL, NULL, '2023-03-02 19:14:39'),
-(2, 0, 'Tausif', 'Alam', NULL, 'tausif.study@gmail.com', 'U2FsdGVkX1/F/yVqsls8Volz2NVguGyrLw/zoOiepnM=', 'male', NULL, 'tausif02', NULL, 'student', NULL, NULL, '2023-03-02 18:06:17'),
-(3, 0, 'Sumaiya', 'Fahmida', NULL, 'sumaiyaFahmida@gmail.com', 'U2FsdGVkX1/xoSQnvtzKbHnqnHLF2uqFMon+HbSNXHU=', 'female', NULL, 'sumaiya02', NULL, 'student', NULL, NULL, '2023-03-02 19:23:41'),
-(6, 0, 'Sadia', 'Neer', NULL, 'sadianeer@gmail.com', 'U2FsdGVkX19tebqfKITk5gDj+gXB1SsZVvI3zDQZziU=', 'female', NULL, 'sadia02', NULL, 'student', NULL, NULL, '2023-03-03 06:42:46'),
-(28, 0, 'Moinul', 'Islam', NULL, 'web.moinul@gmail.com', 'U2FsdGVkX1/ThadFFvGxiV0a754ueXLwKEZFvjE40JM=', 'male', NULL, NULL, NULL, NULL, NULL, NULL, '2023-05-07 09:37:14');
+(29, 0, 'Moinul', 'Islam', NULL, 'web.moinul@gmail.com', 'U2FsdGVkX18FtT4NZK3rQ5+JYhom3TPHr1WsVFkbo+A=', 'male', NULL, NULL, NULL, NULL, NULL, NULL, '2023-05-13 02:32:28'),
+(30, 0, 'Tausif', 'Alam', NULL, 'tausifalam.study@gmail.com', 'U2FsdGVkX1+irw9a6IGzMcVc5MxrhfqJ6W31OkYMVDc=', 'male', NULL, NULL, NULL, NULL, NULL, NULL, '2023-05-13 02:50:56'),
+(31, 0, 'Sumaiya', 'Fahmida', NULL, 'sumaiyafahmida844@gmail.com', 'U2FsdGVkX18UdauIII4lXIy7O6mVxGIkwcPC0TujfVk=', 'female', NULL, NULL, NULL, NULL, NULL, NULL, '2023-05-13 04:19:28'),
+(32, 0, 'Sadia', 'Neer', NULL, 'sadia.neer@gmail.com', 'U2FsdGVkX1+U5e8ggxwZxO3u5KALK7K9XXVXr6+aJ7U=', 'female', NULL, NULL, NULL, NULL, NULL, NULL, '2023-05-13 04:23:38'),
+(33, 0, 'Zarmin', 'Riya', NULL, 'zarminriya5858@gmail.com', 'U2FsdGVkX1/dRRgUARe+nUyqvjwKzu7bxgw6LS3JMUg=', 'female', NULL, NULL, NULL, NULL, NULL, NULL, '2023-05-13 04:27:11'),
+(34, 0, 'Sabrina', 'Arohi', NULL, 'sabrinaarohi11@gmail.com', 'U2FsdGVkX1+2fC03m0VdMrDru6CxEyL48DBmPZXFeLs=', 'female', NULL, NULL, NULL, NULL, NULL, NULL, '2023-05-13 04:28:35'),
+(35, 0, 'Moinul', 'Islam', NULL, 'moinul.islam5749@gmail.com', 'U2FsdGVkX1/WeZAvZLI8C05eVGcsL76PrNlyE/Y4kUI=', 'male', NULL, NULL, NULL, NULL, NULL, NULL, '2023-05-13 05:39:34');
 
 --
 -- Indexes for dumped tables
@@ -325,7 +302,7 @@ ALTER TABLE `eduinfo`
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `tags`
@@ -343,7 +320,7 @@ ALTER TABLE `topic`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- Constraints for dumped tables

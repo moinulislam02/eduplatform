@@ -24,7 +24,7 @@ module.exports = {
     getAllPost: callback => {
         pool.query(`
         select posts.id, posts.description,posts.photo, posts.likeCount, posts.shareCount,posts.commentCount,posts.status,posts.userId,posts.createdAt , user.id, user.status, user.firstName, user.LastName, user.phoneNumber, user.emailAddress, user.gender, user.dob, user.username, user.shortBio
-        from posts join user ON posts.userId = user.id ORDER BY posts.createdAt DESC`,
+        from posts join user ON posts.userId = user.id where posts.status = "0" ORDER BY posts.createdAt DESC`,
             [],
             (err, result)=>{
                 if (err) {

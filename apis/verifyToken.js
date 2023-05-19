@@ -16,7 +16,7 @@ const verifyToken = (req,res,next)=>{
 
 const verifyTokenandAuthorization = (req,res,next)=>{
     verifyToken(req,res,()=>{
-        if(req.user.id === req.params.id || req.user.role){
+        if(req.user.id === req.params.id){
             next();
         }else{
             res.status(403).json("Your are not allowed");

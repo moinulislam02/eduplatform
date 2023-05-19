@@ -30,6 +30,10 @@ export default function PostModal({ismodalopen, detectClose}) {
     addPost(data, currentUser?.accessToken).then((res)=>{
         detectClose(false)
         getAllPost(dispatch)
+        setdescription("Share your knowledge now...")
+        setphoto(null)
+        setstatus(0)
+        files = null;
     })
   }
 
@@ -87,7 +91,7 @@ export default function PostModal({ismodalopen, detectClose}) {
                               </div>
                         </div>
                         <div className="d-flex align-items-center">
-                              <select name="status" id="" className="form-control">
+                              <select name="status" id="" className="form-control" onChange={(e)=>setstatus(e.target.value)}>
                                   <option value="">Status</option>
                                   <option value="0">Active</option>
                                   <option value="1">Draft</option>

@@ -9,6 +9,7 @@ import Feeds from './pages/feeds';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { useState } from 'react';
+import Profile from './pages/profile';
 
 function App() {
   const currentUser = useSelector((state)=>state.userInfo.currentUser)
@@ -20,6 +21,7 @@ function App() {
           <>
             <Routes>
               <Route path='/' element={<Signin/>} />
+              <Route path='/login' element={<Signin/>} />
               <Route path='/register' element={<Signup/>} />
             </Routes>
           </>
@@ -30,6 +32,7 @@ function App() {
               <div className="container">
                 <Routes>
                   <Route path='/' element={<Feeds/>} />
+                  <Route path='/profile' element={<Profile/>} />
                 </Routes>
               </div>
             </div>

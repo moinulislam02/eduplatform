@@ -6,7 +6,7 @@ router.post('/', createUser)
 router.get('/', verifyTokenandAdmin, getUsers)
 router.get('/:id', gerUserById)
 router.get('/userallinfo/:id', getUserAllInfoById)
-router.patch('/:id', verifyTokenandAuthorization, updateUser)
+router.patch('/:id', verifyToken, updateUser)
 router.delete('/:id',verifyTokenandAdmin, deleteUser)
 router.post('/login', login)
 
