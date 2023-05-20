@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { loginStart, loginSuccess, loginFailure, logout } from '../redux/authRedux'
 import { getPostFailur, getPostStart, getPostSuccess } from '../redux/postRedux';
+import { getMyPostStart, getMyPostSuccess, getMyPostFailur } from '../redux/myPostRedux';
 
 export const login = async (dispatch, data) =>{
     let res;
@@ -20,6 +21,17 @@ export const addPost = async (data, vartoken) =>{
     let res;
     try {
         res = await axios({method:'post',url:`${process.env.REACT_APP_API_URL}/posts/`, data:data ,headers:{token: 'Bearer '+ vartoken}})
+        return res
+    } catch (error) {
+        console.log(error);
+        return res
+    }
+}
+
+export const updatePost = async (id, data, vartoken) =>{
+    let res;
+    try {
+        res = await axios({method:'patch',url:`${process.env.REACT_APP_API_URL}/posts/${id}`, data:data ,headers:{token: 'Bearer '+ vartoken}})
         return res
     } catch (error) {
         console.log(error);
@@ -52,10 +64,24 @@ export const uploadMedia = async (data) =>{
     }
 }
 
-export const getMyPosts = async (id, vartoken) =>{
+export const getMyPosts = async (dispatch, id, vartoken) =>{
     let res;
+    dispatch(getMyPostStart())
     try {
         res = await axios({method:'get',url:`${process.env.REACT_APP_API_URL}/posts/user/${id}`, headers:{token: 'Bearer '+ vartoken}})
+        dispatch(getMyPostSuccess(res.data?.data))
+        return res
+    } catch (error) {
+        dispatch(getMyPostFailur())
+        console.log(error);
+        return res
+    }
+}
+
+export const deleteMyPost = async (id, vartoken) =>{
+    let res;
+    try {
+        res = await axios({method:'delete',url:`${process.env.REACT_APP_API_URL}/posts/${id}`, headers:{token: 'Bearer '+ vartoken}})
         return res
     } catch (error) {
         console.log(error);

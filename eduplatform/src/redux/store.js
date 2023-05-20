@@ -1,6 +1,7 @@
 import {configureStore,combineReducers} from "@reduxjs/toolkit"
 import authReducer from './authRedux'
 import postReducer from './postRedux'
+import mypostReducer from './myPostRedux'
 import {
     persistStore,
     persistReducer,
@@ -19,7 +20,7 @@ const persistConfig = {
   storage,
 };
 
-const rootReducer = combineReducers({userInfo: authReducer, posts:postReducer});
+const rootReducer = combineReducers({userInfo: authReducer, posts:postReducer, myPost:mypostReducer});
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = configureStore({
